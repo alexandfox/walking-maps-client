@@ -10,33 +10,33 @@ class mapItem extends Component {
 
 	render() {
 		return (
-			<div class="listItem">
-				<div class="listImage">
-					<a href="/map/{{this._id}}"><img src="{{ this.image}}" /></a>
-					<div class="listDetails">
-						<div class="listTime">
-							<i class="emphasis">{this.total_time} min.</i>
-							<i class="far fa-heart">{this.total_favorites}</i>
+			<div className="listItem">
+				<div className="listImage">
+					<img src={this.props.image} />
+					<div className="listDetails">
+						<div className="listTime">
+							<i className="emphasis">{this.props.total_time} min.</i>
+							<i className="far fa-heart">{this.props.total_favorites}</i>
 						</div>
-						<div class="listActions">
-							<i class="far fa-bookmark fa-lg"></i>
-							<i class="fas fa-bookmark fa-lg"></i>
+						<div className="listActions">
+							<i className="far fa-bookmark fa-lg"></i>
+							<i className="fas fa-bookmark fa-lg"></i>
 						</div>
 					</div>
 				</div>
-				<div class="listInfo">
-					<div class="location">
-							<div class="listCity">{this.city}</div>
-							<div class="listNeighborhood">{this.neighborhood}</div>
+				<div className="listInfo">
+					<div className="location">
+							<div className="listCity">{this.props.city}</div>
+							<div className="listNeighborhood">{this.props.neighborhood}</div>
 					</div>
-					<div class="details">
-							<div class="listKey">Total stops: <span class="listValue">{this.total_stops}</span></div>
-							<div class="listKey">Places visited: <span class="listValue">{this.places}</span></div>
+					<div className="details">
+							<div className="listKey">Total stops: <span className="listValue">{this.props.total_stops}</span></div>
+							<div className="listKey">Places visited: <span className="listValue">{this.props.places}</span></div>
 					</div>
-					<div class="userDetails">
-						<span class="listKey">Creator: <span class="listValue"><a href="#">{this.user.username}</a></span></span>, 
-						{this.created_at}
-					</div>
+					{/* <div className="userDetails">
+						<span className="listKey">Creator: <span className="listValue"><a href="#">{this.props.user.username}</a></span></span>, 
+						{this.props.created_at}
+					</div> */}
 				</div>
 			</div>
 		)
