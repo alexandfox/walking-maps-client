@@ -13,7 +13,9 @@ class NavMain extends Component {
   render(){
     return (
       <nav className="topNav">
-				<NavLink className="home" activeClassName="is-active" to="/" >Home</NavLink>
+				<div className="navHome">
+					<NavLink activeClassName="is-active" to="/" >Home</NavLink>
+				</div>
 				<div className="navRight" >
 						<NavLink activeClassName="is-active" to="/create" >+ Create New Map</NavLink>
 						{this.state.loggedIn && <NavLink activeClassName="is-active" to="#" >Favorites</NavLink>}

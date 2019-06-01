@@ -1,12 +1,18 @@
 .topNav {
+  background-color: black;
+  color: white;
   position: fixed;
   top: 0;
   height: 3em;
   width: 100%;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center; 
   overflow: hidden;
+  border-bottom: 2px solid black;
+  z-index: 10;
+  transition: all 500ms ease-in-out;
 }
 
 // .topNav a {
