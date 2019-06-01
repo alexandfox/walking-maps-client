@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import MapItem from "../components/MapListItem"
 
 class Home extends Component {
   constructor(props) {
@@ -10,8 +11,12 @@ class Home extends Component {
   // RENDER
   render() {
     return (
-    <div id="home-container">
-			hi
+    <div className="body-container">
+			{
+				this.state.filteredMaps.map( (map, index) => (
+					<MapItem key={index} {...map} />
+				))
+			}
     </div>
   )}
 }
