@@ -2,7 +2,6 @@ import React, {Component} from "react"
 import MapItem from "../components/MapListItem"
 import { getAllMaps } from "../api/apiHandler";
 
-
 class Home extends Component {
   constructor(props) {
     super(props)
