@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import { getOneMap } from "../api/apiHandler"
+import DisplayMap from "../components/Map"
 
 class ViewMap extends Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ class ViewMap extends Component {
 		console.log("map page state:, ", this.state)
 		return (
 			<div className="body-container">
+				<DisplayMap />
 				{this.state.map && 
 				<div className="mapInfo">
 					Total Time: {this.state.map.total_time}
