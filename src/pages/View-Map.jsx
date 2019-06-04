@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import { getOneMap } from "../api/apiHandler"
-import DisplayMap from "../components/Map"
+import { WrappedMap } from "../components/Map"
 
 var directionsService = new window.google.maps.DirectionsService;
 
@@ -18,28 +18,32 @@ class ViewMap extends Component {
 		var thisMap = await getOneMap(this.props.match.params.id)
 		thisMap = thisMap.data.map
 
+		this.calculateRoute(directionsService, thisMap.map)
 		this.setState({
 			map: thisMap,
-			route: this.calculateRoute(directionsService, thisMap.map)
 		})
 	}
 
 	calculateRoute( service, object ) {
+		var new_route = null;
 		service.route(object, function(response, status) {
 			if (status === 'OK') {
 				console.log("response: ", response)
-				return response
+				new_route = response
+				console.log("new route: ", new_route)
 			} else {
 				window.alert('Directions request failed due to ' + status);
 			}
-		});
+		}, () => this.setState({
+					route: new_route
+				}, () => console.log("new state: ", this.state)));
 	}
 
 	render() {
 		console.log("map page state:, ", this.state)
 		return (
 			<div className="body-container">
-				<DisplayMap map={this.state.map} 
+				<WrappedMap map={this.state.map} 
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div style={{ height: `400px` }} />}
 					mapElement= {<div style={{ height: `100%` }} />}
@@ -48,6 +52,7 @@ class ViewMap extends Component {
 				<div className="mapInfo">
 					Total Time: {this.state.map.total_time}
 				</div>}
+				{this.state.route && <div>{this.state.route}</div> }
 			</div>
 		)
 	}

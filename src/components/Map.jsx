@@ -1,4 +1,3 @@
-import { compose, withProps } from "recompose"
 import React, {Component} from "react"
 import { withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
 
@@ -12,15 +11,13 @@ class DisplayMap extends Component {
 	render() {
 		console.log("display map props: ", this.props)
 		return(
-			<div className="map">
-				<GoogleMap
-					defaultZoom={8}
-					defaultCenter={{ lat: -34.397, lng: 150.644 }}
-				>
-					{this.props.map.map && <DirectionsRenderer geocoded_waypoints={this.props.map.map.waypoints} />}
-				</GoogleMap>
-			</div>
+			<GoogleMap
+				defaultZoom={8}
+				defaultCenter={{ lat: -34.397, lng: 150.644 }}
+			>
+				{this.props.map.map && <DirectionsRenderer geocoded_waypoints={this.props.map.map.waypoints} />}
+			</GoogleMap>
 	)}
 }
 
-export default DisplayMap
+export const WrappedMap = withGoogleMap(DisplayMap)
