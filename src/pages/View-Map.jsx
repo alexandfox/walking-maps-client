@@ -18,25 +18,9 @@ class ViewMap extends Component {
 		var thisMap = await getOneMap(this.props.match.params.id)
 		thisMap = thisMap.data.map
 
-		this.calculateRoute(directionsService, thisMap.map)
 		this.setState({
 			map: thisMap,
 		})
-	}
-
-	calculateRoute( service, object ) {
-		var new_route = null;
-		service.route(object, function(response, status) {
-			if (status === 'OK') {
-				console.log("response: ", response)
-				new_route = response
-				console.log("new route: ", new_route)
-			} else {
-				window.alert('Directions request failed due to ' + status);
-			}
-		}, () => this.setState({
-					route: new_route
-				}, () => console.log("new state: ", this.state)));
 	}
 
 	render() {
