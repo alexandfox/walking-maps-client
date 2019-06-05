@@ -41,8 +41,15 @@ class ViewMap extends Component {
 					Places Visited: {map.places}
 					{map.creator && <div>Creator: {map.creator.username}</div>}
 					Created: {map.created_at}
+					Guide Notes {map.guide_notes}
 				</div>
 				}
+
+				<div className="mapActions">
+					like this map? .... map component
+					Open in App
+					Clone Map
+				</div>
 			</div>
 		)
 	}

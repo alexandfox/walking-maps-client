@@ -1,7 +1,10 @@
 import React, {Component} from "react"
 import { withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
+import StandaloneSearchBox from "react-google-maps/lib/components/places/StandaloneSearchBox";
+import SearchBox from "react-google-maps/lib/components/places/SearchBox";
 
-var directionsService = new window.google.maps.DirectionsService;
+
+var directionsService = new window.google.maps.DirectionsService();
 var new_route = null;
 var count = 0;
 
@@ -44,15 +47,18 @@ class DisplayMap extends Component {
 	}
 
 	render() {
-		console.log("display map props: ", this.props)
+		// console.log("display map props: ", this.props)
 		// console.log("display map state: ", this.state)
 		return(
-			<GoogleMap
-				defaultZoom={8}
-				defaultCenter={{ lat: -34.397, lng: 150.644 }}
-			>
-				{this.state.route && <DirectionsRenderer directions={this.state.route} />}
-			</GoogleMap>
+			<div className="mapWithSearch">
+				<GoogleMap
+					defaultZoom={8}
+					defaultCenter={{ lat: -34.397, lng: 150.644 }}
+				>
+					{this.state.route && <DirectionsRenderer directions={this.state.route} />}
+				</GoogleMap>
+			</div>
+
 	)}
 }
 
