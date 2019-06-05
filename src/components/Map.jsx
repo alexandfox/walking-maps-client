@@ -2,6 +2,8 @@ import React, {Component} from "react"
 import { withGoogleMap, GoogleMap, DirectionsRenderer } from "react-google-maps"
 
 var directionsService = new window.google.maps.DirectionsService;
+var new_route = null;
+var count = 0;
 
 class DisplayMap extends Component { 
 	constructor(props) {
@@ -12,31 +14,35 @@ class DisplayMap extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		var new_route = null;
-		new_route = this.calculateRoute(directionsService, this.props.map.map);
-
-		// if (this.props.map !== prevProps.map) {
-			
-
-    if (new_route) {
+		if (!new_route && count < 1) {
+			this.calculateRoute(directionsService, this.props.map.map)
+			.then( res => {
+				// if (new_route && new_route.length > 1) {
+				console.log("new_route var: ", new_route)
+				count ++
 				this.setState({
-					route : this.calculateRoute(directionsService, this.props.map.map)
-				}, () => console.log("state again: ", this.state))
-    }
+					route : new_route
+				})
+			}
+			)
+		}
   }
 
 	calculateRoute( service, object ) {
 		console.log("here i am")
-		service.route(object, function(response, status) {
-			if (status === 'OK') {
-				console.log("response: ", response)
-				console.log("response.geocoded_waypoints: ", response.geocoded_waypoints)
-
-				return response.geocoded_waypoints
-			} else {
-				window.alert('Directions request failed due to ' + status);
-			}
-		});
+		return new Promise((resolve, reject) => {
+			service.route(object, function(response, status) {
+				if (status === 'OK') {
+					console.log("response: ", response)
+					new_route = response.geocoded_waypoints
+					console.log("new_route: ", new_route)
+					resolve()
+					// return response.geocoded_waypoints
+				} else {
+					window.alert('Directions request failed due to ' + status);
+				}
+			});
+		})
 	}
 
 	render() {

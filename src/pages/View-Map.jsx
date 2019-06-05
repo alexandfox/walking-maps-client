@@ -24,7 +24,7 @@ class ViewMap extends Component {
 	}
 
 	render() {
-		console.log("map page state:, ", this.state)
+		// console.log("map page state:, ", this.state)
 		return (
 			<div className="body-container">
 				<WrappedMap map={this.state.map} 
