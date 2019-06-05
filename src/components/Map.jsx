@@ -12,7 +12,28 @@ class DisplayMap extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			route : []
+			route : [],
+			map : {
+				map: {},
+				creator: null,
+				image: "",
+				city: "",
+				neighborhood: [],
+				places: [],
+				total_stops: null,
+				total_time: null,
+				favorites: [],
+				total_favorites: 0,
+				tags: [],
+				clone_from: {},
+				number_of_clones: 0,
+				clones: [],
+				local_rank: 0,
+				global_rank: 0,
+				guide_notes: "",
+				place_notes: [],
+				comments: [],
+			}
 		}
 	}
 
