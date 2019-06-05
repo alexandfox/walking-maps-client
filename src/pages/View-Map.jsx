@@ -25,6 +25,7 @@ class ViewMap extends Component {
 
 	render() {
 		// console.log("map page state:, ", this.state)
+		var map = this.state.map
 		return (
 			<div className="body-container">
 				<WrappedMap map={this.state.map} 
@@ -34,9 +35,14 @@ class ViewMap extends Component {
 				/>
 				{this.state.map && 
 				<div className="mapInfo">
-					Total Time: {this.state.map.total_time}
-				</div>}
-				{this.state.route && <div>{this.state.route}</div> }
+					Total Time: {map.total_time} min.
+					Total Stops: {map.total_stops}
+					Neighborhoods: {map.neighborhood}
+					Places Visited: {map.places}
+					{map.creator && <div>Creator: {map.creator.username}</div>}
+					Created: {map.created_at}
+				</div>
+				}
 			</div>
 		)
 	}
