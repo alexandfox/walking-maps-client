@@ -13,44 +13,24 @@ class DisplayMap extends Component {
 		super(props)
 		this.state = {
 			route : [],
-			map : {
-				map: {},
-				creator: null,
-				image: "",
-				city: "",
-				neighborhood: [],
-				places: [],
-				total_stops: null,
-				total_time: null,
-				favorites: [],
-				total_favorites: 0,
-				tags: [],
-				clone_from: {},
-				number_of_clones: 0,
-				clones: [],
-				local_rank: 0,
-				global_rank: 0,
-				guide_notes: "",
-				place_notes: [],
-				comments: [],
-			}
+			map : {},
 		}
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (!new_route && count < 1) {
-			this.calculateRoute(directionsService, this.props.map.map)
-			.then( res => {
-				// if (new_route && new_route.length > 1) {
-				// console.log("new_route var: ", new_route)
-				count ++
-				this.setState({
-					route : new_route
-				})
-			}
-			)
-		}
-  }
+	// componentDidUpdate(prevProps, prevState) {
+	// 	if (!new_route && count < 1) {
+	// 		this.calculateRoute(directionsService, this.props.map.map)
+	// 		.then( res => {
+	// 			// if (new_route && new_route.length > 1) {
+	// 			// console.log("new_route var: ", new_route)
+	// 			count ++
+	// 			this.setState({
+	// 				route : new_route
+	// 			})
+	// 		}
+	// 		)
+	// 	}
+  // }
 
 	calculateRoute( service, object ) {
 		return new Promise((resolve, reject) => {
@@ -75,6 +55,7 @@ class DisplayMap extends Component {
 				<GoogleMap
 					defaultZoom={8}
 					defaultCenter={{ lat: -34.397, lng: 150.644 }}
+					mapTypeControl={false}
 				>
 					{this.state.route && <DirectionsRenderer directions={this.state.route} />}
 				</GoogleMap>
