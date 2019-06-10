@@ -10,7 +10,7 @@ class DisplayMap extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			bounds: null,
+			bounds: new window.google.maps.LatLngBounds(),
 			center: {
 				lat: 41.9, lng: -87.624
 			},
@@ -96,7 +96,7 @@ class DisplayMap extends Component {
 
 	render() {
 		// console.log("display map props: ", this.props)
-		// console.log("display map state: ", this.state)
+		console.log("display map state: ", this.state)
 		return(
 			<div className="mapWithSearch">
 				<GoogleMap
@@ -106,9 +106,10 @@ class DisplayMap extends Component {
 					onBoundsChanged={this.onBoundsChanged}
 				>
 					{this.state.route && <DirectionsRenderer directions={this.state.route} />}
-					{this.props.type === "create" && <SearchBox
+					{this.props.type === "create" && 
+					<SearchBox
 						ref={this.onSearchBoxMounted}
-						bounds={this.bounds}
+						bounds={this.state.bounds}
 						controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
 						onPlacesChanged={this.onPlacesChanged}
 					>
