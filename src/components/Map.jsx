@@ -55,7 +55,7 @@ class DisplayMap extends Component {
 				<GoogleMap
 					defaultZoom={8}
 					defaultCenter={{ lat: -34.397, lng: 150.644 }}
-					mapTypeControl={false}
+					mapTypeId={false}
 				>
 					{this.state.route && <DirectionsRenderer directions={this.state.route} />}
 				</GoogleMap>
