@@ -40,6 +40,15 @@ class CreateMap extends Component {
 		}, () => console.log("new places added: ", place))
 	}
 
+	removePlaceFromRoute = (index) => {
+		var new_places = this.state.places 
+		new_places.splice(index,1)
+
+		this.setState({
+			places : new_places
+		}, () => console.log("places removed. new places array: ", this.state.places))
+	}
+
 	render() {
 		return (
 			<div className="body-container">
@@ -54,7 +63,9 @@ class CreateMap extends Component {
 				<label>Route: </label>
 				<ul className="placesList">
 					{this.state.places.length > 0 && this.state.places.map((place, index) => 
-						<li key={index} className="placesItem">{place}</li>
+						<li key={index} className="placesItem">{place}
+							<span className="removePlace" onClick={()=> this.removePlaceFromRoute(index)}>X</span>
+						</li>
 					)}
 				</ul>
 				<label>Total Walking Time: min</label>
