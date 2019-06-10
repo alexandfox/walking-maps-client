@@ -85,7 +85,7 @@ class CreateMap extends Component {
 
 		this.setState({
 			places : new_places
-		}, () => console.log("places removed. new places array: ", this.state.places))
+		}, () => this.updateRouteFromPlaces(new_places))
 	}
 
 	render() {
