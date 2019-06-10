@@ -24,12 +24,13 @@ class DisplayMap extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (this.props.type === "view" && !new_route && count < 1) {
-			this.calculateRoute(directionsService, this.props.map.map)
+		if (this.props.map !== prevProps.map && count < 1) {
+			this.calculateRoute(directionsService, this.props.map)
 			.then( res => {
-				// if (new_route && new_route.length > 1) {
-				// console.log("new_route var: ", new_route)
-				count ++
+				if (this.props.type === "view") {
+					console.log("here i am, updating the count")
+					count ++
+				}
 				this.setState({
 					route : new_route
 				})
@@ -110,7 +111,7 @@ class DisplayMap extends Component {
 
 
 	render() {
-		// console.log("display map props: ", this.props)
+		console.log("display map props: ", this.props)
 		console.log("display map state: ", this.state)
 		return(
 			<div className="mapWithSearch">
@@ -140,7 +141,7 @@ class DisplayMap extends Component {
 								<div>
 								{this.state.places[index].name}
 								{this.state.places[index].formatted_address}
-								{this.props.type === "create" && <button className="addStop" onClick={() => this.props.addStop(this.state.places[index].name)}>Add Stop</button>}
+								{this.props.type === "create" && <button className="addStop" onClick={() => this.props.addStop(this.state.places[index])}>Add Stop</button>}
 								</div>
 							</InfoWindow>}
 						</Marker>

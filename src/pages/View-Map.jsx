@@ -28,7 +28,7 @@ class ViewMap extends Component {
 		var map = this.state.map
 		return (
 			<div className="body-container">
-				<WrappedMap map={this.state.map} 
+				<WrappedMap map={this.state.map.map} 
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div style={{ height: `400px` }} />}
 					mapElement= {<div style={{ height: `100%` }} />}

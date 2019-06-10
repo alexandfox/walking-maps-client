@@ -26,18 +26,57 @@ class CreateMap extends Component {
 			// 	place_notes: [],
 			// 	comments: [],
 			// },
-			map : {},
+			map : {
+				origin: null,
+				destination: null,
+				waypoints: [],
+				travelMode: "WALKING",
+				optimizeWaypoints: false,
+			},
 			places: [],
 		}
+	}
+
+	updateRouteFromPlaces = (stopsArray) => {
+		var idArray = []
+		// get array of place IDs:
+		stopsArray.map((place) => {
+			idArray.push({placeId: place.place_id})
+		})
+
+		var origin, destination = null, waypoints = [];
+		[origin, ...waypoints] = idArray
+
+		if (waypoints.length > 0) {
+			destination = waypoints.pop()
+			waypoints.map((location, index) => {
+				waypoints[index] = {location: waypoints[index]}
+			})
+		}
+
+		this.setState({
+			map: {
+				origin,
+				destination,
+				waypoints,
+				travelMode: "WALKING",
+				optimizeWaypoints: false,
+			}
+		})
 	}
 
 	addPlaceToRoute = (place) => {
 		var new_places = this.state.places 
 		new_places.push(place)
 
+		// automatically sets most recently added place as the last in the route
+
 		this.setState({
 			places : new_places
-		}, () => console.log("new places added: ", place))
+		}, () => {
+			console.log("new_places: ", new_places)
+			this.updateRouteFromPlaces(new_places)
+		})
 	}
 
 	removePlaceFromRoute = (index) => {
@@ -50,12 +89,14 @@ class CreateMap extends Component {
 	}
 
 	render() {
+		console.log("create map state: ", this.state)
 		return (
 			<div className="body-container">
 				<WrappedMap 
+					map={this.state.map}
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div className="mapContainer" />}
-					mapElement= {<div className="map" map={this.state.map} />}
+					mapElement= {<div className="map"/>}
 					type="create"
 					addStop={this.addPlaceToRoute}
 				/>
@@ -63,16 +104,14 @@ class CreateMap extends Component {
 				<label>Route: </label>
 				<ul className="placesList">
 					{this.state.places.length > 0 && this.state.places.map((place, index) => 
-						<li key={index} className="placesItem">{place}
+						<li key={index} className="placesItem">{place.name}
 							<span className="removePlace" onClick={()=> this.removePlaceFromRoute(index)}>X</span>
 						</li>
 					)}
 				</ul>
 				<label>Total Walking Time: min</label>
 				<label>Guide Notes:</label>
-				<textarea cols="30" rows="10">
-					what should people know about your map?
-				</textarea>
+				<textarea value="what should people know about your map?" cols="30" rows="10"/>
 				<button className="createButton">Submit</button>
 				</form>
 				
