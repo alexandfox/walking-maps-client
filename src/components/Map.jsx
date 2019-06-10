@@ -1,6 +1,7 @@
 import React, {Component} from "react"
-import { withGoogleMap, GoogleMap, DirectionsRenderer, Marker } from "react-google-maps"
+import { withGoogleMap, GoogleMap, DirectionsRenderer, Marker, InfoWindow } from "react-google-maps"
 import SearchBox from "react-google-maps/lib/components/places/SearchBox";
+// import InfoBox from "react-google-maps/lib/components/addons/InfoBox";
 
 var directionsService = new window.google.maps.DirectionsService();
 var new_route = null;
@@ -87,10 +88,13 @@ class DisplayMap extends Component {
 		this.setState({
 			// center: nextCenter,
 			markers: nextMarkers,
-			// places : new_places
+			places : places
 		});
 
 		this.state.refs.map.fitBounds(bounds);
+	}
+
+	onMarkerClick = () => {
 	}
 
 
@@ -120,7 +124,15 @@ class DisplayMap extends Component {
 					/>
 					</SearchBox>}
 					{this.state.markers.map((marker, index) =>
-						<Marker key={index} position={marker.position} />
+						<Marker key={index} position={marker.position}>
+							<InfoWindow>
+								<div>
+								{this.state.places[index].name}
+								{this.state.places[index].formatted_address}
+								{/* {console.log("places: ", this.state.places)} */}
+								</div>
+							</InfoWindow>
+						</Marker>
 					)}
 				</GoogleMap>
 			</div>
