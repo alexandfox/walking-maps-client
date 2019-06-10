@@ -32,6 +32,7 @@ class ViewMap extends Component {
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div style={{ height: `400px` }} />}
 					mapElement= {<div style={{ height: `100%` }} />}
+					type="view"
 				/>
 				{this.state.map && 
 				<div className="mapInfo">

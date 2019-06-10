@@ -1,13 +1,10 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
-import StandaloneSearchBox from "react-google-maps/lib/components/places/StandaloneSearchBox";
 
 class CreateMap extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			refs : {},
-			places : [],
 			map : {
 				map: {},
 				creator: null,
@@ -32,38 +29,24 @@ class CreateMap extends Component {
 		}
 	}
 
-	onSearchBoxMounted = (ref) => {
-		this.state.refs.searchBox = ref;
-	}
-
-	onPlacesChanged = () => {
-		const new_places = this.state.refs.searchBox.getPlaces();
-
-		this.setState({
-			places : new_places
-		});
-	}
-
 	render() {
 		return (
 			<div className="body-container">
-				<StandaloneSearchBox 
+				{/* <SearchBox
 					ref={this.onSearchBoxMounted}
-					// bounds={this.props.bounds}
+					// bounds={this.bounds}
+					controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
 					onPlacesChanged={this.onPlacesChanged}
-					>
-						<input
-							className="mapSearch"
-							type="text"
-							placeholder="Customized your placeholder"
-						/>
-				</StandaloneSearchBox>
+				>
+				</SearchBox> */}
 				<WrappedMap 
+					// googleMapURL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBAFajUxQ7Ltv5t9nfiaYTXvhnWbTV80bk&libraries=places"
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div className="mapContainer" />}
 					mapElement= {<div className="map" map={this.state.map.map} />}
+					type="create"
 				/>
-				<ol>
+				{/* <ol>
 					{this.state.places.map(({ place_id, formatted_address, geometry: { location } }) =>
 						<li key={place_id}>
 							{formatted_address}
@@ -71,7 +54,7 @@ class CreateMap extends Component {
 							({location.lat()}, {location.lng()})
 						</li>
 					)}
-				</ol>
+				</ol> */}
 			</div>
 		)
 	}
