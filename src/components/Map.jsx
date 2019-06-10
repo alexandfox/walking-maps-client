@@ -89,12 +89,14 @@ class DisplayMap extends Component {
 			markers: nextMarkers,
 			// places : new_places
 		});
+
+		this.state.refs.map.fitBounds(bounds);
 	}
 
 
 	render() {
 		// console.log("display map props: ", this.props)
-		console.log("display map state: ", this.state)
+		// console.log("display map state: ", this.state)
 		return(
 			<div className="mapWithSearch">
 				<GoogleMap
@@ -112,20 +114,8 @@ class DisplayMap extends Component {
 					>
 						<input
 						type="text"
-						placeholder="Customized your placeholder"
-						style={{
-							boxSizing: `border-box`,
-							border: `1px solid transparent`,
-							width: `240px`,
-							height: `32px`,
-							marginTop: `27px`,
-							padding: `0 12px`,
-							borderRadius: `3px`,
-							boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-							fontSize: `14px`,
-							outline: `none`,
-							textOverflow: `ellipses`,
-						}}
+						placeholder="Find Places"
+						className="searchInput"
 					/>
 					</SearchBox>}
 					{this.state.markers.map((marker, index) =>
@@ -137,5 +127,4 @@ class DisplayMap extends Component {
 	)}
 }
 
-// export const WrappedMap = withScriptjs(withGoogleMap(DisplayMap))
 export const WrappedMap = withGoogleMap(DisplayMap)
