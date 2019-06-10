@@ -2,8 +2,6 @@ import React, {Component} from "react"
 import { getOneMap } from "../api/apiHandler"
 import { WrappedMap } from "../components/Map"
 
-var directionsService = new window.google.maps.DirectionsService;
-
 class ViewMap extends Component {
 	constructor(props) {
 		super(props);

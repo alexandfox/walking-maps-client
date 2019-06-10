@@ -33,17 +33,17 @@ class DisplayMap extends Component {
 				}
 				this.setState({
 					route : new_route
-				})
+				}, () => this.props.updateTime(new_route))
 			}
 			)
 		}
   }
 
-	calculateRoute( service, object ) {
+	calculateRoute( service, object) {
 		return new Promise((resolve, reject) => {
 			service.route(object, function(response, status) {
 				if (status === 'OK') {
-					// console.log("response: ", response)
+					console.log("route response: ", response)
 					new_route = response
 					resolve()
 					// return response.geocoded_waypoints
@@ -111,8 +111,8 @@ class DisplayMap extends Component {
 
 
 	render() {
-		console.log("display map props: ", this.props)
-		console.log("display map state: ", this.state)
+		// console.log("display map props: ", this.props)
+		// console.log("display map state: ", this.state)
 		return(
 			<div className="mapWithSearch">
 				<GoogleMap
