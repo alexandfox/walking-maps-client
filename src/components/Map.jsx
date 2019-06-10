@@ -129,7 +129,7 @@ class DisplayMap extends Component {
 								<div>
 								{this.state.places[index].name}
 								{this.state.places[index].formatted_address}
-								{/* {console.log("places: ", this.state.places)} */}
+								{this.props.type === "create" && <button className="addStop" onClick={() => this.props.addStop(this.state.places[index].name)}>Add Stop</button>}
 								</div>
 							</InfoWindow>
 						</Marker>
