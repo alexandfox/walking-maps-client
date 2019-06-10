@@ -136,7 +136,7 @@ class DisplayMap extends Component {
 					</SearchBox>}
 					{this.state.markers.map((marker, index) =>
 						<Marker key={index} position={marker.position} onClick={()=> this.onMarkerClick(index, marker)}>
-							{marker.isOpen && <InfoWindow>
+							{marker.isOpen && <InfoWindow onCloseClick={()=>this.onMarkerClick(index, marker)}>
 								<div>
 								{this.state.places[index].name}
 								{this.state.places[index].formatted_address}
