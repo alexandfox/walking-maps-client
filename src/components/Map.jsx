@@ -82,6 +82,7 @@ class DisplayMap extends Component {
 
 		const nextMarkers = places.map(place => ({
 			position: place.geometry.location,
+			isOpen: false,
 		}));
 		// const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
 
@@ -94,7 +95,17 @@ class DisplayMap extends Component {
 		this.state.refs.map.fitBounds(bounds);
 	}
 
-	onMarkerClick = () => {
+	onMarkerClick = (index, marker) => {
+		const markersList = this.state.markers
+		const openMarker = {
+			position: marker.position,
+			isOpen: !marker.isOpen,
+		}
+
+		markersList[index] = openMarker
+		this.setState({
+			markers: markersList
+		})
 	}
 
 
@@ -124,14 +135,14 @@ class DisplayMap extends Component {
 					/>
 					</SearchBox>}
 					{this.state.markers.map((marker, index) =>
-						<Marker key={index} position={marker.position}>
-							<InfoWindow>
+						<Marker key={index} position={marker.position} onClick={()=> this.onMarkerClick(index, marker)}>
+							{marker.isOpen && <InfoWindow>
 								<div>
 								{this.state.places[index].name}
 								{this.state.places[index].formatted_address}
 								{this.props.type === "create" && <button className="addStop" onClick={() => this.props.addStop(this.state.places[index].name)}>Add Stop</button>}
 								</div>
-							</InfoWindow>
+							</InfoWindow>}
 						</Marker>
 					)}
 				</GoogleMap>
