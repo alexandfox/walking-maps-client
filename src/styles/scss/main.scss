@@ -1,6 +1,7 @@
-@import './_reset';
-@import './_topNav.scss';
+@import './reset';
+@import './topNav';
 @import './map';
+@import './create';
 
 .body-container {
 	margin: 3em 0;

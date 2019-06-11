@@ -73,7 +73,6 @@ class CreateMap extends Component {
 		this.setState({
 			places : new_places
 		}, () => {
-			console.log("new_places: ", new_places)
 			this.updateRouteFromPlaces(new_places)
 		})
 	}
@@ -87,6 +86,10 @@ class CreateMap extends Component {
 		}, () => this.updateRouteFromPlaces(new_places))
 	}
 
+	placesChanged = () => {
+		console.log("changed")
+	}
+
 	calculateRouteTime = (route) => {
 		var totalTime = 0;
 		route.routes[0].legs.forEach(leg => {
@@ -95,7 +98,6 @@ class CreateMap extends Component {
 
 		// update time display
 		var timeInMinutes = Math.round(totalTime / 60)
-		console.log("timeInMinutes: ", timeInMinutes)
 		this.setState({
 			total_time : timeInMinutes,
 		})
@@ -120,9 +122,10 @@ class CreateMap extends Component {
 				/>
 				<form action="" className="createForm">
 				<label>Route: </label>
-				<ul className="placesList">
+				<ul className="placesList" onChange={this.placesChanged}>
 					{this.state.places.length > 0 && this.state.places.map((place, index) => 
-						<li key={index} className="placesItem">{place.name}
+						<li key={index} className="placeItem">
+							<p>{place.name}</p>
 							<span className="removePlace" onClick={()=> this.removePlaceFromRoute(index)}>X</span>
 						</li>
 					)}

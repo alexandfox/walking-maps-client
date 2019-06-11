@@ -43,7 +43,7 @@ class DisplayMap extends Component {
 		return new Promise((resolve, reject) => {
 			service.route(object, function(response, status) {
 				if (status === 'OK') {
-					console.log("route response: ", response)
+					// console.log("route response: ", response)
 					new_route = response
 					resolve()
 					// return response.geocoded_waypoints
