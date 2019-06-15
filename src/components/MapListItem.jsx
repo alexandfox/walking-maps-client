@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class mapItem extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class mapItem extends Component {
 		return (
 			<div className="listItem">
 				<div className="listImage">
-					<img src={this.props.image} />
+					<img src={this.props.image} alt="map-route" />
 					<div className="listDetails">
 						<div className="listTime">
 							<i className="emphasis">{this.props.total_time} min.</i>

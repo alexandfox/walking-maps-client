@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import AuthService from '../api/auth-service';
 
 class NavMain extends Component {
   constructor(props){
