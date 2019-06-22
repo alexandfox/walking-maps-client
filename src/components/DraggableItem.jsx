@@ -54,7 +54,7 @@ const Place = ({ id, text, index, movePlace }) => {
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
   return (
-    <div ref={ref} style={{ ...style, opacity }}>
+    <div ref={ref} >
       {text}
     </div>
   )

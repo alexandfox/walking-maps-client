@@ -1,5 +1,8 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
+import Container from "../components/DraggableList";
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -120,6 +123,7 @@ class CreateMap extends Component {
 					addStop={this.addPlaceToRoute}
 					updateTime={this.calculateRouteTime}
 				/>
+
 				<form action="" className="createForm">
 				<label>Route: </label>
 				<ul className="placesList" onChange={this.placesChanged}>
@@ -130,6 +134,11 @@ class CreateMap extends Component {
 						</li>
 					)}
 				</ul>
+				<DndProvider backend={HTML5Backend}>
+					hi
+					<Container />
+				</DndProvider>
+
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
 				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} />

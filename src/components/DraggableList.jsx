@@ -1,13 +1,11 @@
-import React, {Component} from 'react'
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import React, { useState, useCallback } from 'react'
+import update from 'immutability-helper'
 import Place from "./DraggableItem"
 
-class DnDList extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			cards : [{
+const Container = () => {
+	{
+		const [cards, setCards] = useState([
+      {
         id: 1,
         text: 'Write a cool JS library',
       },
@@ -35,12 +33,10 @@ class DnDList extends Component {
       {
         id: 7,
         text: 'PROFIT',
-      }
-			]
-		}
-	}
+      },
+    ])
 
-	moveCard = useCallback(
+	const moveCard = useCallback(
 		(dragIndex, hoverIndex) => {
 			const dragCard = cards[dragIndex]
 			setCards(
@@ -52,23 +48,25 @@ class DnDList extends Component {
 		[cards],
 	)
 
-	renderCard = (card, index) => {
+	const renderCard = (card, index) => {
 		return (
-			<Card
+			<Place
 				key={card.id}
 				index={index}
 				id={card.id}
 				text={card.text}
-				moveCard={moveCard}
+				moveCard={this.moveCard}
 			/>
 		)
 	}
 
-	render() {
-		return (
-			<DndProvider backend={HTML5Backend}>
-
-			</DndProvider>
+	return (
+			<div>
+				{cards.map((card, i) => this.renderCard(card, i))}
+			</div>
 		)
+
 	}
 }
+
+export default Container;
