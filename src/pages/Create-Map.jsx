@@ -1,8 +1,5 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
-import Container from "../components/DraggableList";
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -141,9 +138,6 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				{/* <DndProvider backend={HTML5Backend}>
-					<Container />
-				</DndProvider> */}
 			</div>
 		)
 	}

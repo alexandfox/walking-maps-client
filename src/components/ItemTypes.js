@@ -1,3 +1,4 @@
-export const ItemTypes = {
+export default {
   PLACE: 'place',
+  CARD: "card"
 }
