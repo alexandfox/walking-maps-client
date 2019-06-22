@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
+import { DragSource } from 'react-dnd'
 
 const Place = ({ id, text, index, movePlace }) => {
   const ref = useRef(null)

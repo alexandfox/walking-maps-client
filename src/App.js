@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Create from "./pages/Create-Map"
 import View from "./pages/View-Map"
 
+import Test from "./pages/Test-Page"
+
 function App() {
   return (
     <div className="App">
@@ -16,6 +18,8 @@ function App() {
         <Route path="/create" render={(props) => <Create {...props}/>} />
         <Route path="/map/:id" render={(props) => <View {...props}/>} />
       </Switch>
+
+      <Test />
     </div>
   );
 }

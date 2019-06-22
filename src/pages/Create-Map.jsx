@@ -134,10 +134,6 @@ class CreateMap extends Component {
 						</li>
 					)}
 				</ul>
-				<DndProvider backend={HTML5Backend}>
-					hi
-					<Container />
-				</DndProvider>
 
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
@@ -145,6 +141,9 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
+				{/* <DndProvider backend={HTML5Backend}>
+					<Container />
+				</DndProvider> */}
 			</div>
 		)
 	}

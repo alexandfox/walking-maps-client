@@ -55,17 +55,16 @@ const Container = () => {
 				index={index}
 				id={card.id}
 				text={card.text}
-				moveCard={this.moveCard}
+				moveCard={moveCard}
 			/>
 		)
 	}
 
 	return (
 			<div>
-				{cards.map((card, i) => this.renderCard(card, i))}
+				{cards.map((card, i) => renderCard(card, i))}
 			</div>
 		)
-
 	}
 }
 
