@@ -139,7 +139,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<DraggableList />
+				<DraggableList places={this.state.places} />
 			</div>
 		)
 	}

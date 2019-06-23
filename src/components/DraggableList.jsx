@@ -5,16 +5,16 @@ import update from 'immutability-helper'
 const style = {
   width: 400,
 }
-const Container = () => {
+const Container = (props) => {
   {
     const [cards, setCards] = useState([
       {
         id: 1,
-        text: 'Write a cool JS library',
+        text: props.places[0] && props.places[0].name,
       },
       {
         id: 2,
-        text: 'Make it generic enough',
+        text: props.places[1] && props.places[1].name,
       },
     ])
     
@@ -28,6 +28,8 @@ const Container = () => {
     }
     return (
       <div style={style}>
+				{console.log("draglist props: ", props)}
+				{props.places[0] && <div>here i am: {props.places[0].name}</div>}
         {cards.map((card, i) => (
           <Card
             key={card.id}
