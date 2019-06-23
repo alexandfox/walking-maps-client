@@ -38,6 +38,7 @@ const Container = () => {
         text: 'PROFIT',
       },
     ])
+    
     const moveCard = (dragIndex, hoverIndex) => {
       const dragCard = cards[dragIndex]
       setCards(
