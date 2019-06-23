@@ -37,21 +37,23 @@ class CreateMap extends Component {
 				optimizeWaypoints: false,
 			},
 			places: [],
-			placeNames: [],
 			total_time: 0,
 		}
 	}
 
 	onSortEnd = ({oldIndex, newIndex}) => {
-    this.setState(({placeNames}) => ({
-      placeNames: arrayMove(placeNames, oldIndex, newIndex),
-    }));
+    this.setState(({places}) => ({
+      places: arrayMove(places, oldIndex, newIndex),
+    })
+		, this.updateRouteFromPlaces());
   };
 
-	updateRouteFromPlaces = (stopsArray) => {
+	// onSortChange = 
+
+	updateRouteFromPlaces = () => {
 		var idArray = []
 		// get array of place IDs:
-		stopsArray.map((place) => 
+		this.state.places.map((place) => 
 			idArray.push({placeId: place.place_id})
 		)
 
@@ -80,13 +82,8 @@ class CreateMap extends Component {
 		var new_places = this.state.places 
 		new_places.push(place)
 
-		var place_names = this.state.placeNames
-		// place_names.push({id: place_names.length +1, text: place.name, })
-		place_names.push(place.name)
-
 		this.setState({
 			places : new_places,
-			placeNames : place_names
 		}, () => {
 			this.updateRouteFromPlaces(new_places)
 		})
@@ -98,7 +95,7 @@ class CreateMap extends Component {
 
 		this.setState({
 			places : new_places
-		}, () => this.updateRouteFromPlaces(new_places))
+		}, () => this.updateRouteFromPlaces())
 	}
 
 	placesChanged = () => {
@@ -153,7 +150,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<SortList items={this.state.placeNames} onSortEnd={this.onSortEnd} />
+				<SortList items={this.state.places} onSortEnd={this.onSortEnd} />
 				{/* <DraggableList places={this.state.placeNames} /> */}
 			</div>
 		)
