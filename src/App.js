@@ -9,7 +9,7 @@ import View from "./pages/View-Map"
 
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DragDropContext } from 'react-dnd'
-// import Test from "./pages/Test-Page"
+import Test from "./pages/Test-Page"
 
 function App() {
   return (
@@ -20,6 +20,8 @@ function App() {
         <Route path="/create" render={(props) => <Create {...props}/>} />
         <Route path="/map/:id" render={(props) => <View {...props}/>} />
       </Switch>
+
+      <Test />
     </div>
   );
 }

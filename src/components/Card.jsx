@@ -1,6 +1,7 @@
 import React, { useImperativeHandle, useRef } from 'react'
 import { DragSource, DropTarget } from 'react-dnd'
 import ItemTypes from './ItemTypes'
+
 const style = {
   border: '1px dashed gray',
   padding: '0.5rem 1rem',
@@ -8,6 +9,7 @@ const style = {
   backgroundColor: 'white',
   cursor: 'move',
 }
+
 const Card = React.forwardRef(
   ({ text, isDragging, connectDragSource, connectDropTarget }, ref) => {
     const elementRef = useRef(null)

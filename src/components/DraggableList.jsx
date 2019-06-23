@@ -9,19 +9,14 @@ const style = {
 
 const Container = (props) => {
   {
-    var [cards, setCards] = useState([])
+    const [cards, setCards] = useState([props.places])
 
 		const updateCards = () => {
-			// cards.push({id: cards.length + 1, text: placeName})
-			console.log("here i am in update cards")
-			var new_places = []
-			props.places.map((place, index) => {
-				new_places.push({id: index + 1, text: place.name})
-				console.log("here i am in the map, place: ", place.name)
-				console.log("new_places: ", new_places)
-			})
-
-			setCards(props.places)
+			setCards((
+				update(cards, {
+					$set: props.places
+				})
+			))
 		}
 
 		useEffect(() => {
