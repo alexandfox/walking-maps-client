@@ -35,6 +35,7 @@ class CreateMap extends Component {
 				optimizeWaypoints: false,
 			},
 			places: [],
+			placeNames: [],
 			total_time: 0,
 		}
 	}
@@ -71,8 +72,12 @@ class CreateMap extends Component {
 		var new_places = this.state.places 
 		new_places.push(place)
 
+		var place_names = this.state.placeNames
+		place_names.push({id: place_names.length +1, text: place.name})
+
 		this.setState({
-			places : new_places
+			places : new_places,
+			placeNames : place_names
 		}, () => {
 			this.updateRouteFromPlaces(new_places)
 		})
@@ -139,7 +144,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<DraggableList places={this.state.places} />
+				<DraggableList places={this.state.placeNames} />
 			</div>
 		)
 	}

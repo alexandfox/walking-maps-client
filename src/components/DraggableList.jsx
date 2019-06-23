@@ -1,22 +1,35 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, usePrevious } from 'react'
 import Card from '../components/Card'
 import update from 'immutability-helper'
 
 const style = {
   width: 400,
 }
+
+
 const Container = (props) => {
   {
-    const [cards, setCards] = useState([
-      {
-        id: 1,
-        text: props.places[0] && props.places[0].name,
-      },
-      {
-        id: 2,
-        text: props.places[1] && props.places[1].name,
-      },
-    ])
+    var [cards, setCards] = useState([])
+
+		const updateCards = () => {
+			// cards.push({id: cards.length + 1, text: placeName})
+			console.log("here i am in update cards")
+			var new_places = []
+			props.places.map((place, index) => {
+				new_places.push({id: index + 1, text: place.name})
+				console.log("here i am in the map, place: ", place.name)
+				console.log("new_places: ", new_places)
+			})
+
+			setCards(props.places)
+		}
+
+		useEffect(() => {
+      console.log("supposedly, the component changed.")
+			if (cards != props.places) {
+				updateCards()
+			}
+    });
     
     const moveCard = (dragIndex, hoverIndex) => {
       const dragCard = cards[dragIndex]
@@ -29,7 +42,8 @@ const Container = (props) => {
     return (
       <div style={style}>
 				{console.log("draglist props: ", props)}
-				{props.places[0] && <div>here i am: {props.places[0].name}</div>}
+				{console.log("state cards: ", cards)}
+				{/* {props.places[0] && <div>here i am: {props.places[0].name}</div>} */}
         {cards.map((card, i) => (
           <Card
             key={card.id}
