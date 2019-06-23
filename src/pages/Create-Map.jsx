@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
-import DraggableList from "../components/DraggableList"
 import SortList from "../components/SortList"
 import arrayMove from 'array-move';
 
