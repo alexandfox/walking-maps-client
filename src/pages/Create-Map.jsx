@@ -1,6 +1,9 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
 import DraggableList from "../components/DraggableList"
+import SortList from "../components/SortList"
+import arrayMove from 'array-move';
+
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -40,6 +43,12 @@ class CreateMap extends Component {
 		}
 	}
 
+	onSortEnd = ({oldIndex, newIndex}) => {
+    this.setState(({placeNames}) => ({
+      placeNames: arrayMove(placeNames, oldIndex, newIndex),
+    }));
+  };
+
 	updateRouteFromPlaces = (stopsArray) => {
 		var idArray = []
 		// get array of place IDs:
@@ -73,7 +82,8 @@ class CreateMap extends Component {
 		new_places.push(place)
 
 		var place_names = this.state.placeNames
-		place_names.push({id: place_names.length +1, text: place.name})
+		// place_names.push({id: place_names.length +1, text: place.name, })
+		place_names.push(place.name)
 
 		this.setState({
 			places : new_places,
@@ -144,7 +154,8 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<DraggableList places={this.state.placeNames} />
+				<SortList items={this.state.placeNames} onSortEnd={this.onSortEnd} />
+				{/* <DraggableList places={this.state.placeNames} /> */}
 			</div>
 		)
 	}

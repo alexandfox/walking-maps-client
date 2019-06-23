@@ -9,12 +9,21 @@ const style = {
 
 const Container = (props) => {
   {
-    const [cards, setCards] = useState([props.places])
+    const [cards, setCards] = useState([
+			{
+        id: 1,
+        text: 'a place',
+      },
+      {
+        id: 2,
+        text: 'another place',
+      },
+		])
 
 		const updateCards = () => {
 			setCards((
 				update(cards, {
-					$set: props.places
+					$set: [... props.places, ]
 				})
 			))
 		}
@@ -36,9 +45,8 @@ const Container = (props) => {
     }
     return (
       <div style={style}>
-				{console.log("draglist props: ", props)}
-				{console.log("state cards: ", cards)}
-				{/* {props.places[0] && <div>here i am: {props.places[0].name}</div>} */}
+				{/* {console.log("draglist props: ", props)}
+				{console.log("state cards: ", cards)} */}
         {cards.map((card, i) => (
           <Card
             key={card.id}

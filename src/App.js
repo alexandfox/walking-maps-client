@@ -21,7 +21,7 @@ function App() {
         <Route path="/map/:id" render={(props) => <View {...props}/>} />
       </Switch>
 
-      <Test />
+      {/* <Test /> */}
     </div>
   );
 }
