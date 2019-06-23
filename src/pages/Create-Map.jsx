@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
+import DraggableList from "../components/DraggableList"
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -138,6 +139,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
+				<DraggableList />
 			</div>
 		)
 	}
