@@ -90,6 +90,7 @@ class CreateMap extends Component {
 	}
 
 	removePlaceFromRoute = (index) => {
+		console.log("clicked!")
 		var new_places = this.state.places 
 		new_places.splice(index,1)
 
@@ -150,7 +151,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<SortList items={this.state.places} onSortEnd={this.onSortEnd} />
+				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} />
 				{/* <DraggableList places={this.state.placeNames} /> */}
 			</div>
 		)
