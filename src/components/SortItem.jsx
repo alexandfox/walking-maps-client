@@ -5,16 +5,12 @@ const DragHandle = sortableHandle(() =>
 	<span>:::</span>
 );
 
-const DeleteHandle = sortableHandle(() => 
-	<span onClick={() => alert("click")} >X</span>
-)
-
 const SortItem = SortableElement(({value, index, remove}) => 
-	<span>
+	<li>
 		<DragHandle />
 		<p>{value.name}</p>
-		<DeleteHandle />
-	</span>
+		<span onClick={() => remove(index)} >X</span>
+	</li>
 );
 
 export default SortItem
