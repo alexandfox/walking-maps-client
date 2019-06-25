@@ -45,7 +45,7 @@ class CreateMap extends Component {
     this.setState(({places}) => ({
       places: arrayMove(places, oldIndex, newIndex),
     })
-		, this.updateRouteFromPlaces());
+		, () => this.updateRouteFromPlaces());
   };
 
 	// onSortChange = 
@@ -90,17 +90,12 @@ class CreateMap extends Component {
 	}
 
 	removePlaceFromRoute = (index) => {
-		console.log("clicked! the index is: ", index)
 		var new_places = this.state.places 
 		new_places.splice(index,1)
 
 		this.setState({
 			places : new_places
 		}, () => this.updateRouteFromPlaces())
-	}
-
-	placesChanged = () => {
-		console.log("changed")
 	}
 
 	calculateRouteTime = (route) => {
@@ -136,26 +131,28 @@ class CreateMap extends Component {
 
 				<form action="" className="createForm">
 				<label>Route: </label>
-				<ul className="placesList" onChange={this.placesChanged}>
-					{this.state.places.length > 0 && this.state.places.map((place, index) => 
-						<li key={index} className="placeItem">
-							<p>{place.name}</p>
-							<span onClick={()=> this.removePlaceFromRoute(index)}>X</span>
-						</li>
-					)}
-				</ul>
+
+				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={1}/>
 
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
 				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} />
 				<button className="createButton">Submit</button>
 				</form>
-				
-				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={5}/>
-				{/* <DraggableList places={this.state.placeNames} /> */}
+
 			</div>
 		)
 	}
 }
 
 export default CreateMap
+
+
+				// <ul className="placesList" onChange={this.placesChanged}>
+				// 	{this.state.places.length > 0 && this.state.places.map((place, index) => 
+				// 		<li key={index} className="placeItem">
+				// 			<p>{place.name}</p>
+				// 			<span onClick={()=> this.removePlaceFromRoute(index)}>X</span>
+				// 		</li>
+				// 	)}
+				// </ul>
