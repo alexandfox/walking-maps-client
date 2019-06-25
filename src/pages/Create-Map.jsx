@@ -91,12 +91,12 @@ class CreateMap extends Component {
 
 	removePlaceFromRoute = (index) => {
 		console.log("clicked! the index is: ", index)
-		// var new_places = this.state.places 
-		// new_places.splice(index,1)
+		var new_places = this.state.places 
+		new_places.splice(index,1)
 
-		// this.setState({
-		// 	places : new_places
-		// }, () => this.updateRouteFromPlaces())
+		this.setState({
+			places : new_places
+		}, () => this.updateRouteFromPlaces())
 	}
 
 	placesChanged = () => {
@@ -151,7 +151,7 @@ class CreateMap extends Component {
 				<button className="createButton">Submit</button>
 				</form>
 				
-				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={10}/>
+				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={5}/>
 				{/* <DraggableList places={this.state.placeNames} /> */}
 			</div>
 		)
