@@ -6,14 +6,14 @@ const DragHandle = sortableHandle(() =>
 );
 
 const DeleteHandle = sortableHandle(() => 
-	<span onClick={(e) => alert("click")} >X</span>
+	<span onClick={() => alert("click")} >X</span>
 )
 
 const SortItem = SortableElement(({value, index, remove}) => 
 	<span>
 		<DragHandle />
 		<p>{value.name}</p>
-		{/* <DeleteHandle /> */}
+		<DeleteHandle />
 	</span>
 );
 

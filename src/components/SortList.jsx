@@ -7,8 +7,7 @@ const SortList = SortableContainer(({items, removePlace}) => {
     <ul>
       {items.map((value, index) => (
         <li key={`item-${index}`}>
-          <SortItem key={`item-${index}`} index={index} value={value}/>
-          <span onClick={() => removePlace(index)} >X</span>
+          <SortItem key={`item-${index}`} index={index} value={value} remove={removePlace}/>
         </li>
       ))}
     </ul>
