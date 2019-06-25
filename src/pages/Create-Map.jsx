@@ -90,13 +90,13 @@ class CreateMap extends Component {
 	}
 
 	removePlaceFromRoute = (index) => {
-		console.log("clicked!")
-		var new_places = this.state.places 
-		new_places.splice(index,1)
+		console.log("clicked! the index is: ", index)
+		// var new_places = this.state.places 
+		// new_places.splice(index,1)
 
-		this.setState({
-			places : new_places
-		}, () => this.updateRouteFromPlaces())
+		// this.setState({
+		// 	places : new_places
+		// }, () => this.updateRouteFromPlaces())
 	}
 
 	placesChanged = () => {
@@ -140,7 +140,7 @@ class CreateMap extends Component {
 					{this.state.places.length > 0 && this.state.places.map((place, index) => 
 						<li key={index} className="placeItem">
 							<p>{place.name}</p>
-							<span className="removePlace" onClick={()=> this.removePlaceFromRoute(index)}>X</span>
+							<span onClick={()=> this.removePlaceFromRoute(index)}>X</span>
 						</li>
 					)}
 				</ul>

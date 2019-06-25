@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
-import {SortableElement} from 'react-sortable-hoc';
+import {SortableElement, sortableHandle} from 'react-sortable-hoc';
 
-const SortItem = SortableElement(({value, index,remove}) => 
-	<li>
+const DragHandle = sortableHandle(() => 
+	<span>:::</span>
+);
+
+const DeleteHandle = sortableHandle(() => 
+	<span onClick={(e) => alert("click")} >X</span>
+)
+
+const SortItem = SortableElement(({value, index, remove}) => 
+	<span>
+		<DragHandle />
 		<p>{value.name}</p>
-		<span className="removePlace" onClick={()=> remove(index)}>X</span>
-	</li>
+		{/* <DeleteHandle /> */}
+	</span>
 );
 
 export default SortItem
