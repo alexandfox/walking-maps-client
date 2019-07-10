@@ -122,9 +122,29 @@ class CreateMap extends Component {
     //     link.href = dataUrl;
     //     link.click();
     // })
-		html2canvas(document.getElementById("test-div"))
+		html2canvas(document.getElementById("test-div"), {
+				allowTaint: true,
+        useCORS: true,
+				proxy: "http://localhost:3000",
+				foreignObjectRendering: true,
+        // onrendered: function (canvas) {
+        //     var img = canvas.toDataURL("image/png");
+        //     img = img.replace('data:image/png;base64,', '');
+        //     var finalImageSrc = 'data:image/png;base64,' + img;
+        //     document.body.appendChild(canvas);
+				// 		console.log("finalImageSrc", finalImageSrc)
+        //  }
+			})
 			.then(function(canvas) {
 				document.body.appendChild(canvas);
+				var img = canvas.toDataURL("image/png");
+				img = img.replace('data:image/png;base64,', '');
+				var dataUrl = 'data:image/png;base64,' + img;
+				var link = document.createElement('a');
+				link.download = 'my-image-name.png';
+				link.href = dataUrl;
+				link.click();
+				console.log("done")
 		});
 	}
 
@@ -136,13 +156,13 @@ class CreateMap extends Component {
 					map={this.state.map}
 					loadingElement = {<div style={{ height: `100%` }} />}
 					containerElement= {<div className="mapContainer" />}
-					mapElement= {<div className="map"/>}
+					mapElement= {<div className="map" id="test-div"/>}
 					type="create"
 					addStop={this.addPlaceToRoute}
 					updateTime={this.calculateRouteTime}
 				/>
 
-				<form action="" className="createForm" id="test-div">
+				<form action="" className="createForm">
 				<label>Route: </label>
 
 				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={1}/>
