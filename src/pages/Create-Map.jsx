@@ -114,13 +114,13 @@ class CreateMap extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault()
-		domtoimage.toJpeg(notesBox, { quality: 0.95 })
+		domtoimage.toPng(document.getElementById('notes-box'))
     .then(function (dataUrl) {
 				console.log("the url is: ", dataUrl)
-        // var link = document.createElement('a');
-        // link.download = 'my-image-name.jpeg';
-        // link.href = dataUrl;
-        // link.click();
+        var link = document.createElement('a');
+        link.download = 'my-image-name.png';
+        link.href = dataUrl;
+        link.click();
     });
 	}
 
@@ -145,10 +145,11 @@ class CreateMap extends Component {
 
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
-				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} id="notes-box" />
+				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)}/>
 				<button onClick={this.onSubmit} className="createButton">Submit</button>
 				</form>
 
+				<div id="notes-box">Here's some text.</div>
 			</div>
 		)
 	}
