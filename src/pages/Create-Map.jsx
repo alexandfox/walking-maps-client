@@ -8,27 +8,22 @@ class CreateMap extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			// map : {
-			// 	map: {},
-			// 	creator: null,
-			// 	image: "",
-			// 	city: "",
-			// 	neighborhood: [],
-			// 	places: [],
-			// 	total_stops: null,
-			// 	total_time: null,
-			// 	favorites: [],
-			// 	total_favorites: 0,
-			// 	tags: [],
-			// 	clone_from: {},
-			// 	number_of_clones: 0,
-			// 	clones: [],
-			// 	local_rank: 0,
-			// 	global_rank: 0,
-			// 	guide_notes: "",
-			// 	place_notes: [],
-			// 	comments: [],
-			// },
+			creator: null,
+			image: "",
+			city: "",
+			neighborhood: [],
+			total_stops: null,
+			favorites: [],
+			total_favorites: 0,
+			tags: [],
+			clone_from: {},
+			number_of_clones: 0,
+			clones: [],
+			local_rank: 0,
+			global_rank: 0,
+			guide_notes: "",
+			place_notes: [],
+			comments: [],
 			map : {
 				origin: null,
 				destination: null,
@@ -115,6 +110,11 @@ class CreateMap extends Component {
 
 	}
 
+	onSubmit = (e) => {
+		e.preventDefault()
+
+	}
+
 	render() {
 		// console.log("create map state: ", this.state)
 		return (
@@ -137,7 +137,7 @@ class CreateMap extends Component {
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
 				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} />
-				<button className="createButton">Submit</button>
+				<button onClick={this.onSubmit} className="createButton">Submit</button>
 				</form>
 
 			</div>
@@ -146,13 +146,3 @@ class CreateMap extends Component {
 }
 
 export default CreateMap
-
-
-				// <ul className="placesList" onChange={this.placesChanged}>
-				// 	{this.state.places.length > 0 && this.state.places.map((place, index) => 
-				// 		<li key={index} className="placeItem">
-				// 			<p>{place.name}</p>
-				// 			<span onClick={()=> this.removePlaceFromRoute(index)}>X</span>
-				// 		</li>
-				// 	)}
-				// </ul>
