@@ -2,7 +2,9 @@ import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
 import SortList from "../components/SortList"
 import arrayMove from 'array-move';
+import domtoimage from 'dom-to-image';
 
+var notesBox = document.getElementById('notes-box');
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -112,7 +114,14 @@ class CreateMap extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault()
-
+		domtoimage.toJpeg(notesBox, { quality: 0.95 })
+    .then(function (dataUrl) {
+				console.log("the url is: ", dataUrl)
+        // var link = document.createElement('a');
+        // link.download = 'my-image-name.jpeg';
+        // link.href = dataUrl;
+        // link.click();
+    });
 	}
 
 	render() {
@@ -136,7 +145,7 @@ class CreateMap extends Component {
 
 				<div>Total Walking Time: {this.state.total_time} min</div>
 				<label>Guide Notes:</label>
-				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} />
+				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)} id="notes-box" />
 				<button onClick={this.onSubmit} className="createButton">Submit</button>
 				</form>
 
