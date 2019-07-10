@@ -2,9 +2,9 @@ import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
 import SortList from "../components/SortList"
 import arrayMove from 'array-move';
-import domtoimage from 'dom-to-image';
 
-var notesBox = document.getElementById('notes-box');
+import domtoimage from 'dom-to-image';
+import html2canvas from 'html2canvas';
 
 class CreateMap extends Component {
 	constructor(props) {
@@ -114,14 +114,18 @@ class CreateMap extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault()
-		domtoimage.toPng(document.getElementById('notes-box'))
-    .then(function (dataUrl) {
-				console.log("the url is: ", dataUrl)
-        var link = document.createElement('a');
-        link.download = 'my-image-name.png';
-        link.href = dataUrl;
-        link.click();
-    });
+		// domtoimage.toPng(document.getElementById('test-div'))
+    // .then(function (dataUrl) {
+		// 		console.log("the url is: ", dataUrl)
+    //     var link = document.createElement('a');
+    //     link.download = 'my-image-name.png';
+    //     link.href = dataUrl;
+    //     link.click();
+    // })
+		html2canvas(document.getElementById("test-div"))
+			.then(function(canvas) {
+				document.body.appendChild(canvas);
+		});
 	}
 
 	render() {
@@ -138,7 +142,7 @@ class CreateMap extends Component {
 					updateTime={this.calculateRouteTime}
 				/>
 
-				<form action="" className="createForm">
+				<form action="" className="createForm" id="test-div">
 				<label>Route: </label>
 
 				<SortList items={this.state.places} onSortEnd={this.onSortEnd} removePlace={this.removePlaceFromRoute} useDragHandle distance={1}/>
@@ -148,8 +152,6 @@ class CreateMap extends Component {
 				<textarea value="what should people know about your map?" cols="30" rows="10" onChange={(e) => this.updateGuideNotes(e)}/>
 				<button onClick={this.onSubmit} className="createButton">Submit</button>
 				</form>
-
-				<div id="notes-box">Here's some text.</div>
 			</div>
 		)
 	}
