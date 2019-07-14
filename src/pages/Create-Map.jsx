@@ -1,24 +1,28 @@
 import React, {Component} from "react"
+import { Redirect } from "react-router-dom";
+
 import { WrappedMap } from "../components/Map"
-import SortList from "../components/SortList"
 import arrayMove from 'array-move';
+
+import SortList from "../components/SortList"
 import createMapImage from "../scripts/createMapImage"
+import {createOneMap} from "../api/apiHandler"
 
 class CreateMap extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			creator: null,
-			image: "",
+			// image: "",
 			city: "",
 			neighborhood: [],
 			total_stops: null,
 			favorites: [],
 			total_favorites: 0,
 			tags: [],
-			clone_from: {},
-			number_of_clones: 0,
-			clones: [],
+			// clone_from: {},
+			// number_of_clones: 0,
+			// clones: [],
 			local_rank: 0,
 			global_rank: 0,
 			guide_notes: "",
@@ -113,11 +117,24 @@ class CreateMap extends Component {
 	onSubmit = (e) => {
 		e.preventDefault()
 		var newImageURL = createMapImage(this.state.places)
-		
+
+		createOneMap({...this.state, isPublic: true, image: newImageURL})
+      .then(res => {
+        this.setState({
+          redirect: true,
+          createdMapId: res.data.dbSuccess._id,
+          submit: true,
+        })
+      })
+      .catch(err => {
+        console.log("ici", err.response);
+      })
 	}
 
 	render() {
-		console.log("create map state: ", this.state)
+		// console.log("create map state: ", this.state)
+		if (this.state.redirect && this.state.submit) {return <Redirect to={`/map/${this.state.createdMapId}`} />}
+
 		return (
 			<div className="body-container">
 				<WrappedMap 

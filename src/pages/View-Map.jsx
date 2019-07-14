@@ -32,12 +32,12 @@ class ViewMap extends Component {
 					mapElement= {<div style={{ height: `100%` }} />}
 					type="view"
 				/>
-				{this.state.map && 
+				{this.state.map.places && 
 				<div className="mapInfo">
 					Total Time: {map.total_time} min.
 					Total Stops: {map.total_stops}
 					Neighborhoods: {map.neighborhood}
-					Places Visited: {map.places}
+					Places Visited: {map.places.length}
 					{map.creator && <div>Creator: {map.creator.username}</div>}
 					Created: {map.created_at}
 					Guide Notes {map.guide_notes}
