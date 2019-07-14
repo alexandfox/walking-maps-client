@@ -61,9 +61,7 @@ function createMapImage(places) {
       })
     })
   }
-
 }
-
 
 export default createMapImage
 

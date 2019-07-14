@@ -4,9 +4,6 @@ import SortList from "../components/SortList"
 import arrayMove from 'array-move';
 import createMapImage from "../scripts/createMapImage"
 
-import domtoimage from 'dom-to-image';
-import html2canvas from 'html2canvas';
-
 class CreateMap extends Component {
 	constructor(props) {
 		super(props)
@@ -115,7 +112,8 @@ class CreateMap extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault()
-		createMapImage(this.state.places)
+		var newImageURL = createMapImage(this.state.places)
+		
 	}
 
 	render() {
