@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import { WrappedMap } from "../components/Map"
 import SortList from "../components/SortList"
 import arrayMove from 'array-move';
+import createMapImage from "../scripts/createMapImage"
 
 import domtoimage from 'dom-to-image';
 import html2canvas from 'html2canvas';
@@ -149,7 +150,7 @@ class CreateMap extends Component {
 	}
 
 	render() {
-		// console.log("create map state: ", this.state)
+		console.log("create map state: ", this.state)
 		return (
 			<div className="body-container">
 				<WrappedMap 
