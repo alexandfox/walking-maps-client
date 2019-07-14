@@ -34,7 +34,7 @@ class DisplayMap extends Component {
 				this.setState({
 					route : new_route
 				}
-				// , () => this.props.updateTime(new_route)
+				, () => { this.props.updateTime && this.props.updateTime(new_route)}
 			)}
 			)
 		}
