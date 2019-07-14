@@ -10,7 +10,7 @@ class Signup extends Component {
 	render() {
 		return (
 			<div style={{margin: '300px 0'}}>
-				signup page
+				<button>Login with Instagram</button>
 			</div>
 		)
 	}
