@@ -11,7 +11,6 @@ function createMapImage(places) {
     updateURL(placeIDs).then(urls => {
       imageURL += paths;
       console.log("imageURL: ", imageURL)
-
       return imageURL
     })
   })

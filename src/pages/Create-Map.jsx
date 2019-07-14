@@ -115,38 +115,7 @@ class CreateMap extends Component {
 
 	onSubmit = (e) => {
 		e.preventDefault()
-		// domtoimage.toPng(document.getElementById('test-div'))
-    // .then(function (dataUrl) {
-		// 		console.log("the url is: ", dataUrl)
-    //     var link = document.createElement('a');
-    //     link.download = 'my-image-name.png';
-    //     link.href = dataUrl;
-    //     link.click();
-    // })
-		html2canvas(document.getElementById("test-div"), {
-				allowTaint: true,
-        useCORS: true,
-				proxy: "http://localhost:3000",
-				foreignObjectRendering: true,
-        // onrendered: function (canvas) {
-        //     var img = canvas.toDataURL("image/png");
-        //     img = img.replace('data:image/png;base64,', '');
-        //     var finalImageSrc = 'data:image/png;base64,' + img;
-        //     document.body.appendChild(canvas);
-				// 		console.log("finalImageSrc", finalImageSrc)
-        //  }
-			})
-			.then(function(canvas) {
-				document.body.appendChild(canvas);
-				var img = canvas.toDataURL("image/png");
-				img = img.replace('data:image/png;base64,', '');
-				var dataUrl = 'data:image/png;base64,' + img;
-				var link = document.createElement('a');
-				link.download = 'my-image-name.png';
-				link.href = dataUrl;
-				link.click();
-				console.log("done")
-		});
+		createMapImage(this.state.places)
 	}
 
 	render() {
