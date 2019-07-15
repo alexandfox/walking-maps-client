@@ -31,7 +31,7 @@ class mapItem extends Component {
 					</div>
 					<div className="details">
 							<div className="listKey">Total stops: <span className="listValue">{this.props.total_stops}</span></div>
-							<div className="listKey">Places visited: <span className="listValue">{this.props.places}</span></div>
+							{/* <div className="listKey">Places visited: <span className="listValue">{this.props.places}</span></div> */}
 					</div>
 					{/* <div className="userDetails">
 						<span className="listKey">Creator: <span className="listValue"><a href="#">{this.props.user.username}</a></span></span>, 
